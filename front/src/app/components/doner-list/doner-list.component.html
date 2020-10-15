@@ -1,0 +1,93 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Donor List :</h2>
+    </div>
+    <div class="col-md-3"  style="margin-top: 8px;">
+      <div class="active-cyan-3 active-cyan-4 mb-4">
+        <input class="form-control" type="text" placeholder="Search"  [(ngModel)]="searchValue" aria-label="Search">
+      </div>
+      <!-- <span class="input-group-btn">
+        <button (click)="gerSearch()" id="toptop">search</button>
+      </span> -->
+    </div>
+    <div class="col-md-1" style="margin-top: 15px;">
+      <button class="btn btn-success" (click)="gerSearch()" id="toptop">search</button>
+    </div>
+    <div class="col-md-2" style="margin-top: 15px;">
+
+      <button class="btn btn-success" (click)="openModal(template)">Add Donor</button>
+    </div>
+
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>BloodGroup</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let donor of Bloodonors; let index = index">
+        <td>{{index+1}}</td>
+        <td>{{donor.dName}}</td>
+        <td>{{donor.bGroup}}</td>
+        <td>{{donor.dMobile}}</td>
+        <td>{{donor.dEmail}}</td>
+        <td>{{donor.dAddress}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add Candidate</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+            <form #fom="ngForm" (ngSubmit)="addDonor(fom)">
+              <div class="">
+
+                <label><b>Name</b></label>
+                <input type="text" placeholder="Enter name" name="Name" [(ngModel)]="name" #dname="ngModel" required>
+                <div *ngIf="dname.touched && !dname.valid" style="color: #ef4048">Username is required</div>
+                <label for="description"><b>Email</b></label>
+                <input type="text" placeholder="Enter email" name="Email" [(ngModel)]="email" #demail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <div *ngIf="demail.touched && demail.errors?.required" style="color: #ef4048">Email is required</div>
+                <div *ngIf="demail.touched && demail.errors?.pattern" style="color: #ef4048">Email is Invalid</div>
+
+                <label><b>Phone.No</b></label>
+                <input type="text" placeholder="Enter name" name="Mobile" maxlength="10" minlength="10" [(ngModel)]="mobile" #phone="ngModel" pInputText pKeyFilter="int" required>
+                <div *ngIf="phone.touched&&phone.errors?.required" style="color: #ef4048">Phone Number is required</div>
+                <div *ngIf="phone.touched&&phone.errors?.minlength" style="color: #ef4048">Phone Number is Invalid</div>
+
+                <label for="description"><b>Blood Group :</b></label>
+                <input type="text" placeholder="Enter blood Group" name="BloodGroup" [(ngModel)]="group" #bgroup="ngModel" required>
+                <div *ngIf="bgroup.touched&&!bgroup.valid" style="color: #ef4048">Blood Group is required</div>
+
+                <label for="description"><b>Address :</b></label>
+                <input type="text" placeholder="Enter Address" name="Address" [(ngModel)]="address" #adress="ngModel" required>
+                <div *ngIf="adress.touched&&!adress.valid" style="color: #ef4048">Address is required</div>
+              </div>
+                <div class="" style="background-color:#f1f1f1">
+                    <button [disabled]="!fom.valid" class="btn btn-success" type="submit" (click)="modalRef.hide()">Submit</button>
+              </div>
+            </form>
+  </div>
+</ng-template>

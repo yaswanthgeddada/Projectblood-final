@@ -1,0 +1,40 @@
+.form-control,
+.btn {
+  min-height: 38px;
+  border-radius: 2px;
+}
+
+.btn {
+  font-size: 15px;
+  font-weight: bold;
+}
+#top{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.work{
+    margin-left:18% !important;
+    margin-right: 19px !important;
+
+}
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.justify-content-end {
+    justify-content: center !important;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 9px !important; 
+    margin-left: -15px !important;
+}
