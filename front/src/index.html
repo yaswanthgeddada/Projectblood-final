@@ -7,6 +7,22 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- chatbot yashgeddada (password hint : 7) -->
+  <script>
+    window.watsonAssistantChatOptions = {
+        integrationID: "5b4eed54-c427-426d-980a-3e133698a8bf", // The ID of this integration.
+        region: "eu-gb", // The region your integration is hosted in.
+        serviceInstanceID: "e798e51b-f0c3-4c2d-8113-650e2cce0df3", // The ID of your service instance.
+        carbonTheme: 'white',
+        onLoad: function(instance) { instance.render(); }
+      };
+    setTimeout(function(){
+      const t=document.createElement('script');
+      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+      document.head.appendChild(t);
+    });
+  </script>
 </head>
 <body>
   <app-root></app-root>
